@@ -35,5 +35,18 @@
     ![report-feature.png](picture/report-feature.png)   
     
 
+## 进阶使用  
+    ### 一、运行命令  
+        下载driver ` mvn com.lazerycode.selenium:driver-binary-downloader-maven-plugin:selenium`  
+        ```
+        mvn clean verify
+        -Dcucumber.options="--tags @baidu"                  设置执行的tag
+        -Dwebdriver=chrome                                  设置driver为chrome
+        -Pprod                                              设置代理
+        -Drongzi.city=shanghai                              设置自定义参数
+        -Dremote.hub=http://192.168.199.106:4444/wd/hub     设置Selenium Grid地址
+        -Pparallel,dev -Dproxy.enable=true                  设置多线程
+        ```
 
-
+    ### 二、运行命令
+        安装Appium
