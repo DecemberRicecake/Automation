@@ -32,7 +32,7 @@
 4. 创建JUnit Test运行类    [RunCukesTest](src/test/java/RunCukesTest.java)  
 5. 运行  
     `mvn verify`, 在 *target/reports* 目录下就可以浏览生成的报告  
-    ![report_feature.png](picture/report_feature.png)   
+    ![report-feature.png](picture/report-feature.png)   
     
 
 
