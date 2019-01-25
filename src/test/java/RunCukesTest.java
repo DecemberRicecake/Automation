@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         plugin = {
                 "pretty",
-                "html:target/pretty",
-                "json:target/cucumber-parallel/cucumber.json"
+                "html:target/cucumber",
+                "json:target/cucumber/cucumber.json"
         },
         tags = {}
 )

@@ -6,12 +6,9 @@ import cucumber.api.java.zh_cn.当;
 import cucumber.api.java.zh_cn.那么;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.baidu_site.pageobjects.BaiduPage;
 
 public class BaiduSteps extends StepDefs {
-    WebDriverWait wait = new WebDriverWait(driver, 10);
-
     @假如("^我在百度首页\"([^\"]*)\"$")
     public void 我在百度首页(String BaiduIndex) throws Throwable {
         driver.get(BaiduIndex);
