@@ -1,6 +1,6 @@
 # language: zh-CN
 
-@rongzi
+@wangyi
 功能: 网易
     场景: 网易
     假如 网易1

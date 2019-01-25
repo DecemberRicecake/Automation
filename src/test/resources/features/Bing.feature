@@ -1,6 +1,6 @@
 # language: zh-CN
 
-@rongzi
+@bing
 功能: Bing
     场景: Bing
     假如 Bing1

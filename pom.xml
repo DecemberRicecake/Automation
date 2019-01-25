@@ -10,12 +10,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.cucumber</groupId>
+            <groupId>io.cucumber</groupId>  <!-- cucumber java库 -->
             <artifactId>cucumber-java</artifactId>
             <version>4.0.1</version>
         </dependency>
         <dependency>
-            <groupId>io.cucumber</groupId>
+            <groupId>io.cucumber</groupId>  <!-- cucumber测试框架依赖 -->
             <artifactId>cucumber-junit</artifactId>
             <version>4.0.1</version>
         </dependency>
@@ -63,6 +63,33 @@
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            <plugin>                                        <!-- cucumber报告插件 -->
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>4.3.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>Automation</projectName>
+                            <!-- optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified -->
+                            <skip>false</skip>
+                            <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}/reports</outputDirectory>
+                            <!-- optional, defaults to outputDirectory if not specified -->
+                            <inputDirectory>${project.build.directory}/cucumber</inputDirectory>
+                            <jsonFiles>
+                                <!-- supports wildcard or name pattern -->
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
