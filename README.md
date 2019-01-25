@@ -27,9 +27,9 @@
 | but (code) | "但是" |
 
 3. 写步骤  
-&emsp;&emsp;(1) 点击该提示图标，并从弹出的菜单项中选择“Create Step Definition”或者“Create All Steps Definition”；  
+&emsp;(1) 点击该提示图标，并从弹出的菜单项中选择“Create Step Definition”或者“Create All Steps Definition”；  
 &emsp;&emsp;![create-steps-by-idea.png](picture/create-steps-by-idea.png)  
-&emsp;&emsp;(2)  在弹出的“Create New Step Definition File”模式窗口中填写文件名称、实现语言以及文件位置等信息即可；  
+&emsp;(2)  在弹出的“Create New Step Definition File”模式窗口中填写文件名称、实现语言以及文件位置等信息即可；  
 &emsp;&emsp;![create-steps-by-idea2.png](picture/create-steps-by-idea2.png)   
 
 
