@@ -35,18 +35,33 @@
     ![report-feature.png](picture/report-feature.png)   
     
 
-## 进阶使用  
-    ### 一、运行命令  
-        下载driver ` mvn com.lazerycode.selenium:driver-binary-downloader-maven-plugin:selenium`  
-        ```
-        mvn clean verify
-        -Dcucumber.options="--tags @baidu"                  设置执行的tag
-        -Dwebdriver=chrome                                  设置driver为chrome
-        -Pprod                                              设置代理
-        -Drongzi.city=shanghai                              设置自定义参数
-        -Dremote.hub=http://192.168.199.106:4444/wd/hub     设置Selenium Grid地址
-        -Pparallel,dev -Dproxy.enable=true                  设置多线程
-        ```
+## Advance Use  
+1. 运行命令汇总  
+    下载driver ` mvn com.lazerycode.selenium:driver-binary-downloader-maven-plugin:selenium`  
+  
+    ```
+    mvn clean verify
+    -Dcucumber.options="--tags @baidu"                  设置执行的tag
+    -Dwebdriver=chrome                                  设置driver为chrome
+    -Pprod                                              设置代理
+    -Drongzi.city=shanghai                              设置自定义参数
+    -Dremote.hub=http://192.168.199.106:4444/wd/hub     设置Selenium Grid地址
+    -Pparallel,dev -Dproxy.enable=true                  设置多线程
+    ```
 
-    ### 二、运行命令
-        安装Appium
+2. 支持手机测试
+    ①安装[node.js](http://nodejs.cn/)  
+    ②安装appium `npm install -g appium`  
+    PS：如安装不成功，使用[GUI版本]https://github.com/appium/appium-desktop/releases  
+    ③安装appium doctor `npm install -g appium-doctor`  
+    ④检查环境 `appium-doctor`  
+    
+    
+    
+
+    
+## 其他方案Macaca    
+    安装jdk、sdk、nodejs
+    安装gradle
+    https://gradle.org/releases/
+    
