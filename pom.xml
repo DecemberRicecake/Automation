@@ -43,7 +43,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId><!-- appium远程访问依赖-->
             <artifactId>selenium-remote-driver</artifactId>
-            <version>3.14.0</version>
+            <version>3.14.0</version><!-- 和selenium-java保持一个版本，版本高的话，手机上的chrome APP也需要用版本不能太老 -->
         </dependency>
     </dependencies>
 

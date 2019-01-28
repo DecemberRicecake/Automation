@@ -8,22 +8,16 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ui.m_baidu.pageobjects.m_BaiduPage;
 
-import java.net.MalformedURLException;
 import java.util.Set;
 
 import static java.lang.Thread.sleep;
 
 
 public class m_BaiduSteps extends AndroidStepDefs {
-
-    public m_BaiduSteps() throws MalformedURLException, InterruptedException {
-        super();
-    }
-
     @假如("^android手机打开\"([^\"]*)\"$")
     public void android手机打开(String BaiduIndex) throws Throwable {
         driver.get(BaiduIndex);                     //要先打开网页，才会有新的webview
-        sleep(2000);
+        sleep(3000);
         Set<String> context = driver.getContextHandles();
         for(String contextName : context) {
             System.out.println(contextName);        //打印所有的Handle
