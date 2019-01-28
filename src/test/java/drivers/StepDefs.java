@@ -10,7 +10,7 @@ public abstract class StepDefs {
 
     protected Thread createThread = new Thread() {
         public void run() {
-            System.out.println("test starting...");
+            System.out.println("web test starting...");
             System.setProperty("webdriver.chrome.driver", "E:\\chromedriver.exe");
             driver = new ChromeDriver();
             wait = new WebDriverWait(driver, 10);
@@ -20,7 +20,7 @@ public abstract class StepDefs {
     // 定义关闭线程
     protected Thread shutdownThread = new Thread() {
         public void run() {
-            System.out.println("test over...");
+            System.out.println("web test over...");
             driver.quit();
         }
     };
