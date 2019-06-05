@@ -8,99 +8,200 @@
     <artifactId>Automation</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <cucumber.version>4.2.6</cucumber.version>
+        <testng.version>6.14.3</testng.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.cucumber</groupId>  <!-- cucumber java库 -->
             <artifactId>cucumber-java</artifactId>
-            <version>4.0.1</version>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.cucumber</groupId>  &lt;!&ndash; cucumber测试框架依赖 &ndash;&gt;-->
+            <!--<artifactId>cucumber-junit</artifactId>-->
+            <!--<version>${cucumber.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>io.cucumber</groupId>&lt;!&ndash; 解决库冲突 &ndash;&gt;-->
+            <!--<artifactId>cucumber-jvm-deps</artifactId>-->
+            <!--<version>1.0.6</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.cucumber</groupId>  <!-- cucumber测试框架依赖 -->
-            <artifactId>cucumber-junit</artifactId>
-            <version>4.0.1</version>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId><!-- 解决库冲突 -->
-            <artifactId>cucumber-jvm-deps</artifactId>
-            <version>1.0.6</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId><!-- cucumber运行依赖junit -->
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>&lt;!&ndash; cucumber运行依赖junit &ndash;&gt;-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.12</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId><!-- selenium库 -->
             <artifactId>selenium-java</artifactId>
             <version>3.14.0</version>
         </dependency>
-        <dependency>
-            <groupId>io.appium</groupId><!-- appium java客户端 -->
-            <artifactId>java-client</artifactId>
-            <version>7.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId><!-- appium远程访问依赖-->
-            <artifactId>selenium-remote-driver</artifactId>
-            <version>3.14.0</version><!-- 和selenium-java保持一个版本，版本高的话，手机上的chrome APP也需要用版本不能太老 -->
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.appium</groupId>&lt;!&ndash; appium java客户端 &ndash;&gt;-->
+            <!--<artifactId>java-client</artifactId>-->
+            <!--<version>7.0.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId> &lt;!&ndash; appium远程访问依赖&ndash;&gt;-->
+            <!--<artifactId>selenium-remote-driver</artifactId>-->
+            <!--<version>3.14.0</version>&lt;!&ndash; 和selenium-java保持一个版本，版本高的话，手机上的chrome APP也需要用版本不能太老 &ndash;&gt;-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18</version>
-                <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>2.18</version>
-                    </dependency>
-                </dependencies>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <configuration>
+                            <systemPropertyVariables>       <!-- 设置PC模式还是手机模式，-D命令 -->
+                                <env>PC</env>
+                            </systemPropertyVariables>
+
+                            <!-- UNCOMMENT - To add any exclusions if required -->
+                            <!-- <excludes> <exclude>**/*IT*.java</exclude> </excludes> -->
+
+                            <includes>
+
+                                <!-- UNCOMMENT BELOW LINE - To execute feature files with a single
+                                    runner -->
+                                <include>**/Default.java</include>
+
+                                <!-- UNCOMMENT BELOW LINE - To execute feature files with multiple
+                                    runners -->
+                                <!--<include>**/*Runner.java</include>-->
+                            </includes>
+
+                            <!-- OPTIONAL UNCOMMENT BELOW 6 LINES - To set data provider thread count value.
+                            Default is 10. For executing using parallel or forking -->
+                            <properties>
+                                <property>
+                                    <name>dataproviderthreadcount</name>
+                                    <value>3</value>
+                                </property>
+                            </properties>
+
+                            <!-- OPTIONAL UNCOMMENT BELOW 3 LINES - In case of multiple runners to further reduce times.
+                            For executing using parallel -->
+                            <parallel>classes</parallel>
+                            <threadCount>3</threadCount>
+                            <perCoreThreadCount>true</perCoreThreadCount>
+
+                            <!-- UNCOMMENT BELOW 3 LINES - To execute using forking
+                                option -->
+                            <!--<forkCount>2</forkCount>-->
+                            <!--<reuseForks>true</reuseForks>-->
+                            <!--<reportsDirectory>${project.build.directory}/failsafe-reports_${surefire.forkNumber}</reportsDirectory>-->
+
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
+
+            <plugin>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cluecumber-report-plugin</artifactId>
+                <version>1.8.0</version>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>reporting</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceJsonReportDirectory>${project.build.directory}/json-cucumber-reports</sourceJsonReportDirectory>
+                    <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+                    <expandStepHooks>true</expandStepHooks>
+                </configuration>
+            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                <!--<version>2.22.1</version>-->
+                <!--<configuration>-->
+                    <!--<parallel>both</parallel>-->
+                    <!--<threadCount>2</threadCount>-->
+                    <!--<testFailureIgnore>true</testFailureIgnore>-->
+                    <!--<systemPropertyVariables>       &lt;!&ndash; 设置PC模式还是手机模式，-D命令 &ndash;&gt;-->
+                        <!--<env>PC</env>-->
+                    <!--</systemPropertyVariables>-->
+                <!--</configuration>-->
+                <!--<dependencies>-->
+                    <!--<dependency>-->
+                        <!--<groupId>org.apache.maven.surefire</groupId>-->
+                        <!--<artifactId>surefire-junit47</artifactId>-->
+                        <!--<version>2.18</version>-->
+                    <!--</dependency>-->
+                <!--</dependencies>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>                                        <!-- cucumber报告插件 -->
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>4.3.0</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>Automation</projectName>
-                            <!-- optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified -->
-                            <skip>false</skip>
-                            <!-- output directory for the generated report -->
-                            <outputDirectory>${project.build.directory}/reports</outputDirectory>
-                            <!-- optional, defaults to outputDirectory if not specified -->
-                            <inputDirectory>${project.build.directory}/cucumber</inputDirectory>
-                            <jsonFiles>
-                                <!-- supports wildcard or name pattern -->
-                                <param>**/*.json</param>
-                            </jsonFiles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>                                        &lt;!&ndash; cucumber报告插件 &ndash;&gt;-->
+                <!--<groupId>net.masterthought</groupId>-->
+                <!--<artifactId>maven-cucumber-reporting</artifactId>-->
+                <!--<version>4.3.0</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>execution</id>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<projectName>Automation</projectName>-->
+                            <!--&lt;!&ndash; optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified &ndash;&gt;-->
+                            <!--<skip>false</skip>-->
+                            <!--&lt;!&ndash; output directory for the generated report &ndash;&gt;-->
+                            <!--<outputDirectory>${project.build.directory}/reports</outputDirectory>-->
+                            <!--&lt;!&ndash; optional, defaults to outputDirectory if not specified &ndash;&gt;-->
+                            <!--<inputDirectory>${project.build.directory}/cucumber</inputDirectory>-->
+                            <!--<jsonFiles>-->
+                                <!--&lt;!&ndash; supports wildcard or name pattern &ndash;&gt;-->
+                                <!--<param>**/*.json</param>-->
+                            <!--</jsonFiles>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>

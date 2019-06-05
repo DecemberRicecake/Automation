@@ -1,16 +1,15 @@
-package ui.baidu_site.step_definitions;
+package ui.baidu_demo.step_definitions;
 
-import drivers.StepDefs;
 import cucumber.api.java.zh_cn.假如;
 import cucumber.api.java.zh_cn.当;
-import cucumber.api.java.zh_cn.那么;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import ui.baidu_site.pageobjects.BaiduPage;
+import runner.BaseSteps;
+import ui.baidu_demo.pageobjects.BaiduPage;
 
-public class BaiduSteps extends StepDefs {
-    @假如("^我在百度首页\"([^\"]*)\"$")
-    public void 我在百度首页(String BaiduIndex) throws Throwable {
+public class Baidu1Steps extends BaseSteps {
+    @假如("^我在百度1首页\"([^\"]*)\"$")
+    public void 我在百度1首页(String BaiduIndex) throws Throwable {
         driver.get(BaiduIndex);
     }
 
@@ -19,10 +18,6 @@ public class BaiduSteps extends StepDefs {
         PageFactory.initElements(driver, BaiduPage.class);
         wait.until(ExpectedConditions.elementToBeClickable(BaiduPage.search_box)).sendKeys("cucumber");
         BaiduPage.submit.click();
-    }
-
-    @那么("^搜索到内容$")
-    public void 搜索到内容() throws Throwable {
-        System.out.println(driver.getCurrentUrl());
+        driver.quit();
     }
 }
