@@ -1,12 +1,5 @@
 ######################
 .idea/*
 target/*
-/src/test/resources/config.properties
 
-src/test/java/ui/mobile_web/gl/
-src/test/java/ui/mobile_web/luya/
-src/test/java/ui/mobile_web/luyalp/
-src/test/java/ui/mobile_web/seo/
-src/test/java/ui/pc_web/gl/
-src/test/java/ui/pc_web/luya/
-src/test/java/ui/pc_web/seo/
+
